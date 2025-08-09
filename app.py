@@ -11,9 +11,10 @@ from pymongo.errors import PyMongoError
 app = Flask(__name__)
 CORS(app)
 
-AUTH_SERVICE_URL = "http://127.0.0.1:5001"
-USER_SERVICE_URL = "http://127.0.0.1:5002"
-TASK_SERVICE_URL = "http://127.0.0.1:5003"
+AUTH_SERVICE_URL = "https://auth-service1-2.onrender.com"
+USER_SERVICE_URL = "https://user-service-u56m.onrender.com"
+TASK_SERVICE_URL = "https://task-service-g0fo.onrender.com"
+
 
 logs_data = []
 
@@ -333,4 +334,5 @@ def download_log_file():
     return jsonify({"error": "No se encontró el archivo de log."}), 404
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
